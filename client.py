@@ -25,7 +25,7 @@ print("socket binded to %s" % (port))
 
 
 # Recording duration
-duration = 1
+duration = 0.1
 
 # กำหนดให้แสดงผลทั้งหมดของ numpy array
 np.set_printoptions(threshold=np.inf)  # threshold=np.inf แสดงผลทั้งหมดของ array
@@ -57,7 +57,6 @@ while True:
     # send a thank you message to the client. encoding to send byte type.
 
     byte_data = np.array2string(recording)
-    print(byte_data.encode())
     c.send(byte_data.encode())
 
     # Close the connection with the client
