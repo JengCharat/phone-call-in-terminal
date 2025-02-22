@@ -2,6 +2,7 @@
 # import socket for send array of numpy to server
 import socket
 
+import numpy as np
 import sounddevice as sd
 import wavio as wv
 from scipy.io.wavfile import write
@@ -24,8 +25,10 @@ print("socket binded to %s" % (port))
 
 
 # Recording duration
-duration = 5
+duration = 1
 
+# กำหนดให้แสดงผลทั้งหมดของ numpy array
+np.set_printoptions(threshold=np.inf)  # threshold=np.inf แสดงผลทั้งหมดของ array
 
 # Start recorder with the given values of
 # duration and sample frequency
@@ -52,7 +55,10 @@ while True:
     print("Got connection from", addr)
 
     # send a thank you message to the client. encoding to send byte type.
-    c.send("Thank you for connecting".encode())
+
+    byte_data = np.array2string(recording)
+    print(byte_data.encode())
+    c.send(byte_data.encode())
 
     # Close the connection with the client
     c.close()
