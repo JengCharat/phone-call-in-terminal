@@ -40,6 +40,15 @@ print(array)
 # เล่นเสียง
 write("recording1.wav", freq, array)
 
+print("try play sound")
+array = np.float32(array)  # หรือแปลงเป็น int16 ตามความเหมาะสม
+array = np.clip(array, -1, 1)  # ตรวจสอบให้ค่าของ array อยู่ในช่วง [-1, 1]
+
+# เล่นเสียง
+sd.play(array, samplerate=freq)
+
+# รอให้การเล่นเสียงเสร็จ
+sd.wait()
 sd.play(array, samplerate=freq)
 
 # ปิดการเชื่อมต่อ

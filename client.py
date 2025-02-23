@@ -25,7 +25,7 @@ print("socket binded to %s" % (port))
 
 
 # Recording duration
-duration = 3
+duration = 10
 
 # กำหนดให้แสดงผลทั้งหมดของ numpy array
 np.set_printoptions(threshold=np.inf)  # threshold=np.inf แสดงผลทั้งหมดของ array
