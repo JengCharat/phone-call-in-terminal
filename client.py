@@ -25,7 +25,7 @@ print("socket binded to %s" % (port))
 
 
 # Recording duration
-duration = 10
+duration = 5
 
 # กำหนดให้แสดงผลทั้งหมดของ numpy array
 np.set_printoptions(threshold=np.inf)  # threshold=np.inf แสดงผลทั้งหมดของ array
@@ -47,26 +47,28 @@ np.set_printoptions(threshold=np.inf)  # threshold=np.inf แสดงผลท�
 
 # a forever loop until we interrupt it or
 # an error occurs
-s.listen(5)
-print("socket is listening")
+# s.listen(5)
+# print("socket is listening")
 
-c, addr = s.accept()
-print("Got connection from", addr)
+# c, addr = s.accept()
+# print("Got connection from", addr)
 # while True:
 # Establish connection with client.
 
 # send a thank you message to the client. encoding to send byte type.
 
-recording = sd.rec(int(duration * freq), samplerate=freq, channels=1)
-# Record audio for the given number of seconds
-sd.wait()
-# rms = np.sqrt(np.mean(np.square(recording)))
-# print(f"RMS Level: {rms[0]}")
-byte_data = np.array2string(recording)
-c.send(byte_data.encode())
+while True:
 
-# Close the connection with the client
-
-# Breaking once connection closed
-
-# c.close()
+    s.listen(5)
+    c, addr = s.accept()
+    print("Got connection from", addr)
+    recording = sd.rec(int(duration * freq), samplerate=freq, channels=1)
+    # Record audio for the given number of seconds
+    sd.wait()
+    # rms = np.sqrt(np.mean(np.square(recording)))
+    # print(f"RMS Level: {rms[0]}")
+    byte_data = np.array2string(recording)
+    c.send(byte_data.encode())
+    # Close the connection with the client
+    # Breaking once connection closed
+    c.close()
