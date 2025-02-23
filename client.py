@@ -25,14 +25,14 @@ print("socket binded to %s" % (port))
 
 
 # Recording duration
-duration = 0.1
+duration = 1
 
 # กำหนดให้แสดงผลทั้งหมดของ numpy array
 np.set_printoptions(threshold=np.inf)  # threshold=np.inf แสดงผลทั้งหมดของ array
 
 # Start recorder with the given values of
 # duration and sample frequency
-recording = sd.rec(int(duration * freq), samplerate=freq, channels=2)
+recording = sd.rec(int(duration * freq), samplerate=freq, channels=1)
 
 # Record audio for the given number of seconds
 sd.wait()
